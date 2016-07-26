@@ -3,6 +3,7 @@ FROM alpine:latest
 # Update SSL so that wget can read https sites
 RUN apk update
 RUN apk add ca-certificates wget && update-ca-certificates
+RUN apk add curl jq
 
 # Install gotty
 WORKDIR /tmp
@@ -24,11 +25,11 @@ RUN chmod +x /usr/local/bin/httpServe
 EXPOSE 8080
 EXPOSE 3000
 
-WORKDIR /usr/data
+WORKDIR /usr/workdir
 
 # Install and run the startup script
 ADD run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
 CMD ["/usr/local/bin/run.sh"]
 
-LABEL metadata.launchbot.io="eyJQcm9qZWN0VGFnIjoidGVybWluYWwtc2VydmVyLXRlc3QiLCJQcm9qZWN0TmFtZSI6IlRlcm1pbmFsIHdpdGggc3RhdGljIGNvbnRlbnQgc2VydmVyIiwiUHJvamVjdERlc2NyaXB0aW9uIjoiVGhpcyBjYW4gc2VydmUgYSBzdGF0aWMgc2l0ZSBhbmQgYSB0ZXJtaW5hbCBzZXJ2ZXIuIiwiUHJvamVjdEhvbWVwYWdlIjoiIiwiUG9ydE1hcHBpbmdzIjpbeyJQb3J0IjoiODA4MCIsIkRlc2NyaXB0aW9uIjoiVGVybWluYWwifSx7IlBvcnQiOiIzMDAwIiwiRGVzY3JpcHRpb24iOiJXZWIgU2l0ZSJ9XX0="
+LABEL metadata.launchbot.io="eyJQcm9qZWN0VGFnIjoidGVybWluYWwtc2VydmVyLXRlc3QiLCJQcm9qZWN0TmFtZSI6IlRlcm1pbmFsIHdpdGggc3RhdGljIGNvbnRlbnQgc2VydmVyIiwiUHJvamVjdERlc2NyaXB0aW9uIjoiVGhpcyBjYW4gc2VydmUgYSBzdGF0aWMgc2l0ZSBhbmQgYSB0ZXJtaW5hbCBzZXJ2ZXIuIiwiUHJvamVjdEhvbWVwYWdlIjoiIiwiUG9ydE1hcHBpbmdzIjpbeyJQb3J0IjoiODA4MCIsIkRlc2NyaXB0aW9uIjoiQmFzaCBzaGVsbCJ9LHsiUG9ydCI6IjMwMDAiLCJEZXNjcmlwdGlvbiI6IlR1dG9yaWFsIn1dfQ=="

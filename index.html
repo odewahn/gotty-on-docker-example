@@ -21,19 +21,25 @@
 
 class: center, middle
 
-# My little friend
-
----
-
-# Agenda
-
-1. Introduction
-2. Deep-dive
-3. ...
+# Introdution to `jq`
 
 ---
 
 # Introduction
+
+[jq](https://stedolan.github.io/jq/) is a tool for processing and filtering json data.
+
+---
+
+# Example
+
+Suppose you want to filter out the committers on your github project:
+
+```
+curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=5' | jq '.[] | {message: .commit.message, name: .commit.committer.name}'
+```
+
+---
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
